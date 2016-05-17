@@ -1,7 +1,7 @@
 ---
 title: "金融"
 author: "qiufei"
-date: "2016-03-4"
+date: "2016-03-04"
 output: 
   html_document: 
     fig_height: 7
@@ -90,7 +90,7 @@ tail(cnm2.year$gr,1)
 money=Quandl("PBCHINA/REP_07", authcode="9iGeZZoG6Vc46rfs1AgJ")
 
 money.gr = transmute(money,
-                     month = Month,
+                     month = Date,
                      M2g = lag(M2)/M2-1,
                      M1g = lag(M1)/M1-1,
                      M0g = lag(M0)/M0-1
