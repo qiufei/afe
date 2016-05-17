@@ -1,0 +1,92 @@
+
+# rongsheng petro #
+
+```{r,Message=FALSE}
+
+rs = getSymbols("002493.SZ",from = "1991-7-15",to = Sys.Date(),src = "yahoo",auto.assign=FALSE)
+
+rsa = Ad(rs)
+
+summary(rsa)
+
+median.longterm.rs = median(rsa)
+
+median.yearly = apply.yearly(rsa,median)
+
+rs.year.median = kable(median.yearly,caption = 'median per year rs')
+
+
+## newest adjusted price of rs petro
+rs.adjusted = tail(rsa,1)
+
+rsc = Quandl("GOOG/SHE_002493", api_key="9iGeZZoG6Vc46rfs1AgJ")
+rsc = xts(rsc[,-1],order.by = rsc[,1])
+
+## newest close price of rs petro
+rs.current = tail(Cl(rsc),1)
+
+
+```
+数据日期为`r tail(time(rsa),1)`
+
+该股票的长期调整中值为`r median.longterm.rs`,当前现价为`r rs.current`,当前调整价为`r rs.adjusted`。
+
+
+`r rs.year.median`
+
+# Juneyao Airlines #
+
+
+```{r,Message=FALSE}
+
+jx = getSymbols("603885.SS",from = "1991-7-15",to = Sys.Date(),src = "yahoo",auto.assign=FALSE)
+jxa = Ad(jx)
+
+summary(jxa)
+
+median.longterm.jx = median(jxa)
+
+median.yearly = apply.yearly(jxa,median)
+jx.year.median = kable(median.yearly,caption = 'median per year jx')
+
+
+## newest adjusted price of  Juneyao Airlines
+jx.adjusted = tail(jxa,1)
+
+chartSeries(jxa)
+
+```
+数据日期为`r tail(time(jxa),1)`
+
+该股票的长期调整中值为`r median.longterm.jx`,当前调整价为`r jx.adjusted`。
+
+`r jx.year.median`
+
+# Holike Creative Home #
+
+
+```{r,Message=FALSE}
+
+hlk = getSymbols("603898.SS",from = "1991-7-15",to = Sys.Date(),src = "yahoo",auto.assign=FALSE)
+hlka = Ad(hlk)
+
+summary(hlka)
+
+median.longterm.hlk = median(hlka)
+
+median.yearly = apply.yearly(hlka,median)
+hlk.year.median = kable(median.yearly,caption = 'median per year hlk')
+
+
+## newest adjusted price of  Juneyao Airlines
+hlk.adjusted = tail(hlka,1)
+
+chartSeries(hlka)
+
+```
+数据日期为`r tail(time(hlka),1)`
+
+该股票的长期调整中值为`r median.longterm.hlk`,当前调整价为`r hlk.adjusted`。
+
+`r hlk.year.median `
+

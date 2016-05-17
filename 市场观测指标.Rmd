@@ -1,0 +1,181 @@
+---
+title: "市场观测指标"
+author: "qiufei"
+date: "2016-03-4"
+output: 
+  html_document: 
+    fig_height: 7
+    fig_width: 9
+    keep_md: yes
+    number_sections: yes
+    theme: readable
+    toc: yes
+---
+
+```{r setup,Message=FALSE,echo=FALSE,include=FALSE,warning=FALSE}
+
+# load needed packages
+library(knitr)
+opts_chunk$set(Message=FALSE,echo=FALSE)
+library(ggplot2)
+library(reshape2)
+library(Quandl)
+library(quantmod)
+options("getSymbols.warning4.0"=FALSE)
+library(scales)
+library(plyr)
+library(dplyr)
+options(warn=-1)                        #suprress warning globally
+## the default is
+## options(warn=0)
+## 
+##
+## define needed functions
+## 
+simpic.f = function(code,label){
+    raw = getSymbols.FRED(code,auto.assign=FALSE)
+    raw.median = median(coredata(raw),na.rm = TRUE)
+    detail = summary(raw)[,2]
+    print(detail)
+    chartSeries(raw,name = label)
+}
+## 
+simpic.q = function(code,label){
+    raw = Quandl(code, api_key="9iGeZZoG6Vc46rfs1AgJ")
+    raw = as.xts(raw[,-1],order.by = raw[,1])
+    detail = summary(raw)[,2]
+    print(detail)
+    chartSeries(raw,name = label)
+}
+
+
+```
+
+# risk and volatility #
+
+## St. Louis Fed Financial Stress Index ##
+
+```{r}
+
+simpic.f('STLFSI','St. Louis Fed Financial Stress Index')  
+
+```
+
+
+## CBOE volatility index ##
+
+in the short run, there is a strong negative correlation between volatility index and the level of the market.
+
+```{r volatility}
+
+simpic.f('VIXCLS','CBOE Volatility Index')
+
+simpic.f('VXOCLS','CBOE S&P 100 Volatility Index')
+
+```
+
+
+## BofA Merrill Lynch US Corporate AAA Option-Adjusted Spread ##
+
+```{r}
+
+simpic.f('BAMLC0A1CAAA','AAA Option-Adjusted Spread')  
+
+```
+
+## BofA Merrill Lynch US High Yield CCC or Below Option-Adjusted Spread ##
+
+```{r}
+
+simpic.f('BAMLH0A3HYC','CCC or Below Option-Adjusted Spread')  
+
+```
+
+
+
+
+# interest rates #
+
+Long-Term Government Bond Yields
+
+## USA Treasury Inflation-Indexed Security ##
+
+```{r tips}
+
+simpic.f('FII10','10-Year Treasury Inflation-Indexed Security, Constant Maturity')
+
+simpic.f('TP30A28','30-Year Treasury Inflation-Indexed Bond')  
+
+```
+
+## 'Moody Seasoned Aaa Corporate Bond Yield ##
+```{r}
+
+simpic.f('AAA','Moody Seasoned Aaa Corporate Bond Yield')  
+
+```
+
+## Moody's Seasoned Aaa Corporate Bond Yield Relative to Yield on 10-Year Treasury Constant Maturity ##
+
+```{r}
+
+simpic.f('AAA10YM','Moody Seasoned Aaa  Relative to 10-Year Treasury Constant Maturity')  
+
+```
+
+
+## Effective Federal Funds Rate ##
+
+```{r}
+
+simpic.f('FEDFUNDS','Effective Federal Funds Rate')  
+
+```
+
+
+
+
+# stock markets #
+
+1. historically stocks have returned between 6 and 7 percent after inflation over the last two centuries and have sold at an average PE ratio of about 15.
+
+
+
+
+## s&p ##
+
+of the top 20 firms,15 belongs to two industries: consumer staples and healthcare.
+
+```{r sp500}
+
+simpic.f('SP500','S&P 500')  
+
+```
+
+
+## Dow Jones Industrial Average ##
+
+```{r dj}
+
+simpic.f('DJIA','Dow Jones Industrial Average')
+
+
+
+```
+
+simpic.q('BCB/UDJIAD1','Dow Jones Industrial Average since 1896')
+
+
+# real estate #
+
+## USA home price ##
+
+
+ 
+```{r shiller}
+
+simpic.f('CSUSHPINSA','shiller home price index')
+
+```
+ Index Jan 2000=100
+

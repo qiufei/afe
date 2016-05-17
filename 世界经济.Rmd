@@ -1,0 +1,240 @@
+---
+title: "世界经济"
+author: "qiufei"
+date: "2016-01-31"
+output: 
+  html_document: 
+    fig_height: 7
+    fig_width: 9
+    keep_md: yes
+    number_sections: yes
+    theme: readable
+    toc: yes
+---
+
+
+
+```{r,Message=FALSE,echo=FALSE,include=FALSE}
+
+# load needed packages
+library(knitr)
+opts_chunk$set(Message=FALSE,echo=FALSE)
+library(ggplot2)
+library(reshape2)
+library(Quandl)
+library(quantmod)
+options("getSymbols.warning4.0"=FALSE)
+library(miscTools)
+library(scales)
+library(ggrepel)
+
+```
+
+
+
+# world gdp #
+
+## world gdp growth rate ##
+
+```{r}
+
+options(digits = 2)
+gdp.wb = Quandl("WWDI/WLD_NY_GDP_MKTP_KD_ZG", api_key="9iGeZZoG6Vc46rfs1AgJ")
+
+gdp.wb.pic = ggplot(data = gdp.wb,aes(x = Date,y = Value))+
+      geom_line(colour = 'red')+
+      geom_point()+
+      geom_text(mapping = aes(label = round(Value,2)))+
+    ## 这是给数据点增加数据值标签
+      xlab('year')+
+      ylab('%')+
+      ggtitle('World GDP Growth Rate')
+
+      
+gdp.wb.pic  
+
+gdp.wb.median = median(gdp.wb[,2])
+gdp.wb.mean = mean(gdp.wb[,2])
+
+gdp.wb.data = kable(gdp.wb,caption = 'World GDP Growth Rate')
+
+
+```
+
+`r head(gdp.wb[,1],1)`年世界GDP增长率为`r head(gdp.wb[,2],1)`
+
+`r tail(gdp.wb[,1],1)`年以来,世界GDP增速的中位数为`r gdp.wb.median`,均值为`r gdp.wb.mean`
+
+## china gdp growth rate ##
+
+
+```{r}
+
+cn.gdp.g = Quandl("NBSC/A020A01_A", api_key="9iGeZZoG6Vc46rfs1AgJ")
+
+gdp.cn.pic = ggplot(data = cn.gdp.g,aes(x = Date,y = Value))+
+      geom_line(colour = 'red')+
+      geom_point()+
+      xlab('year')+
+      ylab('%')+
+      ggtitle('china GDP Growth Rate')
+
+      
+gdp.cn.pic 
+
+gdp.cn.median = median(cn.gdp.g[,2])
+gdp.cn.mean = mean(cn.gdp.g[,2])
+
+gdp.cn.g.data = kable(cn.gdp.g,caption = 'china GDP Growth Rate')
+
+
+```
+
+`r head(cn.gdp.g[,1],1)`年中国GDP增长率为`r head(cn.gdp.g[,2],1)`
+
+`r tail(cn.gdp.g[,1],1)`年以来,中国GDP增速的中位数为`r gdp.cn.median`,均值为`r gdp.cn.mean`
+
+
+##  world gdp per capita growth rate ##
+
+```{r}
+
+gdp.p.g.wb = Quandl("WWDI/WLD_NY_GDP_PCAP_KD_ZG", api_key="9iGeZZoG6Vc46rfs1AgJ")
+
+gdp.p.g.pic = ggplot(data = gdp.p.g.wb,aes(x = Date,y = Value,labels = Value))+
+      geom_line(colour = 'red')+
+      geom_point()+
+      xlab('year')+
+      ylab('%')+
+      ggtitle('World GDP per capita Growth Rate')
+      
+gdp.p.g.pic  
+
+gdp.p.median = median(gdp.p.g.wb[,2])
+gdp.p.mean = mean(gdp.p.g.wb[,2])
+
+gdp.p.g.data = kable(gdp.p.g.wb,caption = 'World GDP per capita Growth Rate')
+
+```
+
+`r head(gdp.p.g.wb[,1],1)`年世界人均GDP增长率为`r head(gdp.p.g.wb[,2],1)`
+
+
+世界人均GDP增速的中位数为`r gdp.p.median`,均值为`r gdp.p.mean`
+
+
+
+## world gdp per capita current price ##
+
+```{r}
+
+gdp.p.wb = Quandl("WWDI/WLD_NY_GDP_PCAP_CD", api_key="9iGeZZoG6Vc46rfs1AgJ")
+## 
+gdp.p.wb.pic = ggplot(data = gdp.p.wb,aes(x = Date,y = Value))+geom_line(colour = 'red')+geom_point()+ggtitle('World GDP per capital, cunrrent US dollar')+xlab('year')+ylab('$')
+## 
+gdp.p.wb.pic
+
+gdp.p.wb.1978 = gdp.p.wb[grep('1978',gdp.p.wb$Date),]
+gdp.p.wb.recent = head(gdp.p.wb,1)
+gdp.p.wb.growth = gdp.p.wb.recent[,2]/gdp.p.wb.1978[,2]
+
+```
+
+`r head(gdp.p.wb[,1],1)`年世界人均GDP为`r head(gdp.p.wb[,2],1)`美元(现价).
+
+不考虑通胀因素,世界人均GDP`r gdp.p.wb.recent[,1]`是`r gdp.p.wb.1978[,1]`的`r gdp.p.wb.growth`倍.
+
+
+## china gdp per capita current price ##
+
+
+```{r}
+
+gdp.p.cn = Quandl("NBSC/A020106_A", api_key="9iGeZZoG6Vc46rfs1AgJ")
+
+gdp.p.cn.pic = ggplot(data = gdp.p.cn,aes(x = Date,y = Value))+geom_line(colour = 'red')+geom_point()+ggtitle('China GDP per capital, cunrrent Yuan')+xlab('year')+ylab('Yuan')
+
+
+gdp.p.cn.1978 = gdp.p.cn[grep('1978',gdp.p.cn$Date),]
+gdp.p.cn.recent = head(gdp.p.cn,1)
+gdp.p.cn.growth = gdp.p.cn.recent[,2]/gdp.p.cn.1978[,2]
+
+```
+
+`r head(gdp.p.cn[,1],1)`年中国人均GDP为`r head(gdp.p.cn[,2],1)`元(现价).
+
+不考虑通胀因素,中国人均GDP`r gdp.p.cn.recent[,1]`是`r gdp.p.cn.1978[,1]`的`r gdp.p.cn.growth`倍.
+
+
+## world GDP per capita constant price ##
+
+
+```{r}
+
+gdp.p.constant.fed = Quandl("FRED/NYGDPPCAPKDWLD", api_key="9iGeZZoG6Vc46rfs1AgJ")
+## 
+gdp.p.constant.fed.pic = ggplot(data = gdp.p.constant.fed,aes(x = DATE,y = VALUE))+geom_line(colour = 'red')+geom_point()+ggtitle('World GDP per capital, constant US dollar')+xlab('year')+ylab('$')
+## 
+gdp.p.constant.fed.pic
+## 
+gdp.p.constant.1978 = gdp.p.constant.fed[grep('1978',gdp.p.constant.fed$DATE),]
+gdp.p.constant.recent = head(gdp.p.constant.fed,1)
+gdp.p.constant.growth = gdp.p.constant.recent[,2]/gdp.p.constant.1978[,2]
+
+
+```
+`r head(gdp.p.constant.fed[,1],1)`年世界不变价人均GDP为`r head(gdp.p.constant.fed[,2],1)`美元(1960年不变价).
+
+
+
+不变价世界人均GDP`r gdp.p.constant.recent[,1]`是`r gdp.p.constant.1978[,1]`的`r gdp.p.constant.growth`倍.
+
+基本上人均GDP的绝对值出现下降的年份都是危机的年份.
+
+
+## china GDP per capita constant price ##
+
+```{r}
+
+gdp.p.constant.cn = Quandl("FRED/NYGDPPCAPKDCHN", api_key="9iGeZZoG6Vc46rfs1AgJ")  
+## 
+gdp.p.constant.cn.pic = ggplot(data = gdp.p.cn,aes(x = DATE,y = VALUE))+geom_line(colour = 'red')+geom_point()+ggtitle('China GDP per capital, cunrrent Yuan')+xlab('year')+ylab('Yuan')
+## 
+gdp.p.constant.cn.1978 = gdp.p.constant.cn[grep('1978',gdp.p.constant.cn$DATE),]
+gdp.p.constant.cn.recent = head(gdp.p.constant.cn,1)
+gdp.p.constant.cn.growth = gdp.p.constant.cn.recent[,2]/gdp.p.constant.cn.1978[,2]
+
+
+```
+
+`r head(gdp.p.constant.cn[,1],1)`年中国不变价人均GDP为`r head(gdp.p.constant.cn[,2],1)`元.
+
+中国不变价人均GDP`r gdp.p.constant.cn.recent[,1]`是`r gdp.p.constant.cn.1978[,1]`的`r gdp.p.constant.cn.growth`倍.
+
+
+
+
+# trade #
+
+```{r}
+
+trade.in.gdp = Quandl("WWDI/WLD_NE_TRD_GNFS_ZS", api_key="9iGeZZoG6Vc46rfs1AgJ")
+
+trade.in.gdp.pic = ggplot(data = trade.in.gdp,aes(x = Date,y = Value,labels = Value))+
+      geom_line(colour = 'red')+
+      geom_point()+
+      xlab('year')+
+      ylab('%')+
+      ggtitle('World trade share of GDP')
+      
+trade.in.gdp.pic
+
+trade.in.gdp.median = median(trade.in.gdp[,2])
+trade.in.gdp.mean = mean(trade.in.gdp[,2])
+
+trade.in.gdp.data = kable(trade.in.gdp,caption = 'World trade share of GDP')
+
+```
+`r head(trade.in.gdp[,1],1)`世界贸易占GDP的比重为`r head(trade.in.gdp[,2],1)`
+
+世界贸易占GDP比重的中位数为`r trade.in.gdp.median`,均值为`r trade.in.gdp.mean`

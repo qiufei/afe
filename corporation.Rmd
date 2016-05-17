@@ -1,0 +1,201 @@
+---
+title: "corporation price"
+author: "qiufei"
+date: "2016-01-31"
+output: 
+  html_document: 
+    fig_height: 7
+    fig_width: 9
+    keep_md: yes
+    number_sections: yes
+    theme: readable
+    toc: yes
+---
+
+<!-- # load needed packages -->
+
+```{r load needed packages,Message=FALSE,echo=FALSE,include=FALSE}
+
+library(knitr)
+opts_chunk$set(Message=FALSE,echo=FALSE)
+library(ggplot2)
+library(reshape2)
+library(Quandl)
+library(quantmod)
+options("getSymbols.warning4.0"=FALSE)
+
+```
+
+
+# pic quandmod
+
+```{r pic quandmod}
+
+p.static.mod = function(x.name){
+    rawdata = getSymbols(x.name,
+                         from = "1991-7-15", # A股开始的时间
+                         to = Sys.Date(),
+                         src = "yahoo",
+                         auto.assign=FALSE #让getsymbol不要自动取名字
+                         )
+    ## rawdata =  getSymbols("002493.SZ",from = "1991-7-15",to = Sys.Date(),src = "yahoo",auto.assign=FALSE)
+    ## get the adjusted price
+
+    ## get the adjusted price
+    rawdata = Ad(rawdata)
+
+## all data
+    ## 求整体的波动率
+    var.all = sd(rawdata)
+    ## get the range
+    range.all = range(rawdata)
+
+## funtion to plot range
+     range.pic = function(x){
+        dat.pic = data.frame(
+            time = time(x),
+            data = coredata(x)
+        )
+        colnames(dat.pic) = c('time','low','high')
+        dat.pic.long = melt(dat.pic,id = 'time')
+        ## draw picture
+        pic = ggplot(
+            data = dat.pic.long,
+            aes(x = time,y = value,color=variable))+
+            geom_line()+
+            geom_point()
+        print(pic)
+    }
+    
+## yearly data
+    ## get volatility per year
+    var.year = apply.yearly(rawdata,sd)
+    ## show the sd in pic
+    chartSeries (var.year)    
+    ## get range per year
+    range.year = period.apply(
+        rawdata,
+        INDEX=endpoints(rawdata,'years'),
+        FUN=range)
+    range.pic(range.year)
+    
+## monthly data
+    ## get volatility per month
+    var.month = apply.monthly(rawdata,sd)
+    chartSeries(var.month)    
+    ## get range per month
+    range.month = period.apply(
+        rawdata,
+        INDEX=endpoints(rawdata,'months'),
+        FUN=range)
+    range.pic(range.month)
+
+
+## weekly data    
+    ## get volatility per week
+    var.week = apply.weekly(rawdata,sd)
+    chartSeries(var.week)
+        ## get range per week
+    range.week = period.apply(
+        rawdata,
+        INDEX=endpoints(rawdata,'weeks'),
+        FUN=range)
+    range.pic(range.week)
+
+    ## show the latest range
+    latest.range = tail(range.week,10)
+    print(latest.range)
+    
+    
+}
+
+
+peter = p.static.mod("002493.SZ")
+
+```
+
+# pic quandl
+
+```{r pic quandl}
+
+p.static.quandl = function(x.name){
+    rawdata = Quandl(x.name, api_key="9iGeZZoG6Vc46rfs1AgJ")
+    ## convert dataframe into xts object
+    rawdata = xts(rawdata[,-1],order.by=rawdata[,1])
+
+    ## get the close price
+    rawdata = Cl(rawdata)
+
+## all data
+    ## 求整体的波动率
+    var.all = sd(rawdata)
+    ## get the range
+    range.all = range(rawdata)
+
+## statistics
+    print(summary(rawdata))
+    
+## funtion to plot range
+     range.pic = function(x){
+        dat.pic = data.frame(
+            time = time(x),
+            data = coredata(x)
+        )
+        colnames(dat.pic) = c('time','low','high')
+        dat.pic.long = melt(dat.pic,id = 'time')
+        ## draw picture
+        pic = ggplot(
+            data = dat.pic.long,
+            aes(x = time,y = value,color=variable))+
+            geom_line()+
+            geom_point()
+        print(pic)
+    }
+    
+## yearly data
+    ## get volatility per year
+    var.year = apply.yearly(rawdata,sd)
+    ## show the sd in pic
+    chartSeries (var.year)    
+    ## get range per year
+    range.year = period.apply(
+        rawdata,
+        INDEX=endpoints(rawdata,'years'),
+        FUN=range)
+    range.pic(range.year)
+    
+## monthly data
+    ## get volatility per month
+    var.month = apply.monthly(rawdata,sd)
+    chartSeries(var.month)    
+    ## get range per month
+    range.month = period.apply(
+        rawdata,
+        INDEX=endpoints(rawdata,'months'),
+        FUN=range)
+    range.pic(range.month)
+
+
+## weekly data    
+    ## get volatility per week
+    var.week = apply.weekly(rawdata,sd)
+    chartSeries(var.week)
+        ## get range per week
+    range.week = period.apply(
+        rawdata,
+        INDEX=endpoints(rawdata,'weeks'),
+        FUN=range)
+    range.pic(range.week)
+
+    ## show the latest range
+    latest.range = tail(range.week,10)
+    print(latest.range)
+    
+}
+
+
+peter = p.static.quandl("GOOG/SHE_002493")
+
+```
+
+
