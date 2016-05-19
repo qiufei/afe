@@ -96,12 +96,10 @@ colnames(credit.all) = c('year','美国','中国','德国','日本','世界')
 
 credit.pic = melt(credit.all,id = 'year',variable = '国家')
 
-ggplot(
-    credit.pic,
-    aes(x = year,y = value,color = 国家,shape = 国家))+
+ggplot(credit.pic,aes(x = year,y = value,color = 国家,shape = 国家))+
     geom_line()+
     geom_point()+
-    annotate('rect',xmin = credit.pic$year[47],xmax = credit.pic$year[48],ymin = 0,ymax = 200,alpha=0.1,fill = 'green')+
+    annotate('rect',xmin = as.Date('2007-01-01'),xmax = as.Date('2008-01-01'),ymin = 0,ymax = 200,alpha=0.1,fill = 'green')+
     ggtitle('信贷与GDP比重(%)') 
 
 ```

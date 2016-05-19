@@ -1,7 +1,7 @@
 ---
-title: "金融"
+title: "中央银行报告"
 author: "qiufei"
-date: "2016-03-4"
+date: "2016-05-19"
 output: 
   html_document: 
     fig_height: 7
@@ -28,7 +28,6 @@ library(dplyr)
 ## options(warn=-1)                        #suprress warning globally
 ## the default is
 ## options(warn=0)
-
 ## get data from fed
 fedata = function(x.name){
     getSymbols(x.name,
@@ -38,7 +37,6 @@ fedata = function(x.name){
 ## get data from quandl.com
 qdata = function(x.name){
     Quandl(x.name, api_key="9iGeZZoG6Vc46rfs1AgJ")}
-
 ## pic
 ## define needed functions
 ## 
@@ -323,7 +321,7 @@ house.price = fedata('SPCS20RSA')
 ```{r house debt ratio}
 
 debt.ratio = qdata('FRED/TDSP')
-ggplot(debt.ration,aes(x = DATE,y = VALUE))+
+ggplot(debt.ratio,aes(x = DATE,y = VALUE))+
     geom_line(color = 'red')+
     ggtitle('Household Debt Service Payments as a Percent of Disposable Personal Income of USA')
 
@@ -499,6 +497,41 @@ simpic.f('BAMLH0A3HYC','CCC or Below Option-Adjusted Spread')
 
 1. historically stocks have returned between 6 and 7 percent after inflation over the last two centuries and have sold at an average PE ratio of about 15.
 
+### country stock market comparison ###
+
+```{r stock compare}
+
+qfdata = function(x){
+    dat = qdata(x)
+    xts(dat[,-1],order.by = dat[,1])}
+
+## japan.stock = qfdata('TSE/TOPIX')
+## japan.stock = japan.stock[,'Close']
+japan.stock = fedata('NIKKEI225')
+euro.stock = qfdata('GOOG/NYSE_FEU')
+euro.stock = euro.stock[,'Close']
+china.stock = qfdata('YAHOO/SS_000001')
+china.stock = china.stock[,'Close']
+## new.market = qfdata('NASDAQOMX/NQEM')
+## new.market = new.market[,1]
+## 新兴市场指数与中国股市相关性很高
+usa.stock = qfdata('YAHOO/INDEX_GSPC')
+usa.stock = usa.stock[,'Close']
+
+stock.major = cbind(japan.stock,euro.stock,china.stock,usa.stock)
+stock.major = data.frame(time(stock.major),coredata(stock.major))
+colnames(stock.major) = c('date','japan','euro','china','usa')
+stock.major[,2:5] = scale(stock.major[,2:5])
+stock.major = filter(stock.major,date>='1985-07-03')
+stock.major.pic = melt(stock.major,id = 'date')
+
+ggplot(stock.major.pic,aes(x = date,y = value,color = variable))+
+    geom_line()+
+    ggtitle('主要经济体股指表现(数据经标准化)')
+
+```
+
+
 
 ### s&p ##
 
@@ -568,7 +601,7 @@ credit.pic = melt(credit.all,id = 'year',variable = '国家')
 ggplot(credit.pic,aes(x = year,y = value,color = 国家,shape = 国家))+
     geom_line()+
     geom_point()+
-    annotate('rect',xmin = credit$year[47],xmax = credit$year[48],ymin = 0,ymax = 200,alpha=0.1,fill = 'green')+
+    annotate('rect',xmin = as.Date('2007-01-01'),xmax = as.Date('2008-01-01'),ymin = 0,ymax = 200,alpha=0.1,fill = 'green')+
     ggtitle('信贷与GDP比重(%)') 
 
 ```
