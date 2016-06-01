@@ -20,6 +20,7 @@ opts_chunk$set(Message=FALSE,echo=FALSE)
 library(ggplot2)
 library(reshape2)
 library(Quandl)
+library(pdfetch)
 library(quantmod)
 options("getSymbols.warning4.0"=FALSE)
 library(scales)
@@ -29,14 +30,29 @@ options(warn=-1)          #suprress warning globally
 ## the default is
 ## options(warn=0)
 ## get data from fed
+## package quantmod
 fedata = function(x.name){
     getSymbols(x.name,
                src = "FRED",
                auto.assign=FALSE #让getsymbol不要自动取名字
                          )}
+## get multiple data from fed
+## package pdfetch
+mfedata = function(codes,names){
+    xts.dat = pdfetch_FRED(codes)
+    dat = data.frame(date = time(xts.dat),coredata(xts.dat))
+    colnames(dat) = names
+    mdat = melt(dat,id = 'date')
+    return(mdat)}
 ## get data from quandl.com
 qdata = function(x.name){
     Quandl(x.name, api_key="9iGeZZoG6Vc46rfs1AgJ")}
+## multiple series
+mqdata = function(codes,names){
+    dat = qdata(codes)
+    colnames(dat) = names
+    mdat = melt(dat,id = 'date')
+    return(mdat)}
 ## pic
 ## define needed functions
 ## 
@@ -64,6 +80,12 @@ twopic = function(data,colname2,colname3,label){
         geom_point(size=0.5)+
         ggtitle(label)
 }
+## multiple series plot using gglot2
+mggplot = function(dat,title){
+    ggplot(dat,aes(x = date,y = value,color = variable,shape = variable))+
+    geom_line()+
+    geom_point()+
+    ggtitle(title)}
 
 
 ```
@@ -623,3 +645,47 @@ ggplot(credit.pic,aes(x = year,y = value,color = 国家,shape = 国家))+
 世界1984-2005之间,世界总体的信贷占GDP的比重是比较平稳的,此后一直上升.
 
 一个疑问:中国信贷占GDP的比重在2003年达到过一个高点,不知道那一年发生了什么?
+
+
+# monetary policy divergence #
+
+```{r }
+
+codes = c('BCB/3710','BCB/3714','BCB/3711','BCB/3715','BCB/3709')
+names = c('date','canada','japan','usa','uk','german')
+real.gdp = mqdata(codes,names)
+ggplot(real.gdp,aes(x = date,y = value,color = variable,shape = variable))+
+    geom_line()+
+    geom_point()+
+    ggtitle('Real gross domestic product growth in selected
+advanced economies
+')
+
+codes2 = c('ADB/NA_GRRG_CHN','BCB/3722','BCB/7326','BCB/3720')
+names2 = c('date','china','mexico','brazil','korea')
+real.gdp.em = mqdata(codes2,names2)
+
+ggplot(real.gdp.em,aes(x = date,y = value,color = variable,shape = variable))+
+    geom_line()+
+    geom_point()+
+    ggtitle('Real gross domestic product growth in selected
+emerging market economies')
+
+
+```
+
+
+# usa monetary policy #
+
+```{r }
+
+codes = c('GS10','GS2','DFEDTARU','DFEDTARL')
+names = c('date','10-Year Treasury','2-Year Treasury','fed rate upper','fed rate lower')
+
+usa.interests = mfedata(codes,names)
+
+
+mggplot(usa.interests,'Selected interest rates of USA')
+
+
+```
