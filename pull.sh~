@@ -1,0 +1,7 @@
+#!/bin/sh
+
+# get into the operation folder
+cd do
+
+# get update
+git pull

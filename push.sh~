@@ -1,0 +1,10 @@
+#!/bin/sh
+
+# get into the operation folder
+cd do
+
+# save reports and changes
+git add --all && git commit -a -m 'better' && git push
+
+# finally
+echo "well done!"  
