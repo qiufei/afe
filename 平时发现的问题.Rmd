@@ -1,0 +1,127 @@
+---
+title: "平时发现的问题"
+author: "qiufei"
+date: "2016-06-07"
+output: 
+  html_document: 
+    fig_height: 7
+    fig_width: 9
+    keep_md: yes
+    number_sections: yes
+    theme: readable
+    toc: yes
+---
+
+```{r setup,Message=FALSE,echo=FALSE,include=FALSE,warning=FALSE}
+
+# load needed packages
+library(knitr)
+opts_chunk$set(Message=FALSE,echo=FALSE)
+library(ggplot2)
+library(reshape2)
+library(Quandl)
+Quandl.api_key("9iGeZZoG6Vc46rfs1AgJ")
+library(pdfetch)
+library(quantmod)
+options("getSymbols.warning4.0"=FALSE)
+library(scales)
+library(plyr)
+library(dplyr)
+options(warn=-1)          #suprress warning globally
+## the default is
+## options(warn=0)
+## get data from fed
+## package quantmod
+fedata = function(x.name){
+    getSymbols(x.name,
+               src = "FRED",
+               auto.assign=FALSE #让getsymbol不要自动取名字
+                         )}
+## get multiple data from fed
+## package pdfetch
+mfedata = function(codes,names){
+    xts.dat = pdfetch_FRED(codes)
+    dat = data.frame(date = time(xts.dat),coredata(xts.dat))
+    colnames(dat) = names
+    mdat = melt(dat,id = 'date')
+    return(mdat)}
+## get data from quandl.com
+qdata = function(x.name){
+    Quandl(x.name)}
+## multiple series
+mqdata = function(codes,names){
+    dat = qdata(codes)
+    colnames(dat) = names
+    mdat = melt(dat,id = 'date')
+    return(mdat)}
+## pic
+## define needed functions
+## 
+simpic.f = function(code,label){
+    raw = getSymbols.FRED(code,auto.assign=FALSE)
+    raw.median = median(coredata(raw),na.rm = TRUE)
+    detail = summary(raw)[,2]
+    print(detail)
+    chartSeries(raw,name = label)
+}
+## 
+simpic.q = function(code,label){
+    raw = Quandl(code)
+    raw = as.xts(raw[,-1],order.by = raw[,1])
+    detail = summary(raw)[,2]
+    print(detail)
+    chartSeries(raw,name = label)
+}
+##
+twopic = function(data,colname2,colname3,label){
+    colnames(data) = c('year',colname2,colname3)
+    pic.data = melt(data,id = 'year')
+    ggplot(pic.data,aes(x = year,y = value,color = variable))+
+        geom_line()+
+        geom_point(size=0.5)+
+        ggtitle(label)
+}
+## multiple series plot using gglot2
+mggplot = function(dat,title){
+    ggplot(dat,aes(x = date,y = value,color = variable,shape = variable))+
+    geom_line()+
+    geom_point()+
+    ggtitle(title)}
+
+
+```
+
+这是我平时发现的或者感兴趣的一些问题的集合.
+
+
+# 有认为cpi的真实测度指标是 M2/real GDP #
+
+
+```{r cpi real}
+
+codes = c('NBSC/A0L0301_A','NBSC/A020401_A')
+names = c('date','M2','GDP')
+realcpi = Quandl(codes)
+colnames(realcpi) = names
+realcpi = filter(realcpi,date>='1990-12-31')
+## M2/GDP
+realcpi$rcpi = realcpi$M2/realcpi$GDP
+## change of M2/GDP
+realcpi$mcpi = ROC(realcpi$rcpi,type="discrete")
+
+rcpi.plot = melt(realcpi,id = 'date',measure = c('rcpi','mcpi'))
+
+ggplot(rcpi.plot,aes(x = date,y = value,color = variable))+
+    geom_line()+
+    geom_point()
+
+
+ggplot(realcpi,aes(x = date,y = mcpi))+
+    geom_line(color = 'red')+
+    geom_point()+
+    geom_text(aes(label = percent(mcpi)),hjust=0, vjust=-0.5)+
+    ggtitle('M2/GDP的年度增长率')
+
+
+```
+
