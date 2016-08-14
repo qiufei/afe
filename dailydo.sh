@@ -25,7 +25,7 @@ Rscript -e 'library("knitr"); knit2html("平时发现的问题.Rmd",force_v1 = T
 Rscript -e 'library("knitr"); knit2html("金融.Rmd",force_v1 = TRUE)'
 
 # remove all html file
-rm *.html
+# rm *.html
 
 # save report
 git add --all && git commit -a -m 'better' && git push
