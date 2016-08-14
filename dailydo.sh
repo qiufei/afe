@@ -10,7 +10,7 @@ git pull
 # Rscript -e 'library("knitr"); knit2html(".Rmd",force_v1 = TRUE)'
 Rscript -e 'library("knitr"); knit2html("corporation.Rmd",force_v1 = TRUE)'
 
-Rscript -e 'library("knitr"); knit2html("fiance.Rmd",force_v1 = TRUE)'
+Rscript -e 'library("knitr"); knit2html("finance.Rmd",force_v1 = TRUE)'
 
 Rscript -e 'library("knitr"); knit2html("price.Rmd",force_v1 = TRUE)'
 

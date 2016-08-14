@@ -1,6 +1,13 @@
-# finance
-qiufei  
-August 21, 2015  
+---
+title: "finance"
+author: "qiufei"
+date: "August 21, 2015"
+output: 
+  html_document: 
+    fig_height: 7
+    fig_width: 9
+    keep_md: yes
+---
 
 fiance about china
 
@@ -35,7 +42,7 @@ getSymbols('MYAGM2CNM189N',src='FRED')
 chartSeries(MYAGM2CNM189N)
 ```
 
-![](finance_files/figure-html/unnamed-chunk-2-1.png)
+![plot of chunk unnamed-chunk-2](figure/unnamed-chunk-2-1.png)
 
 ## quandmod plot with name specified by yourself
 
@@ -43,7 +50,7 @@ chartSeries(MYAGM2CNM189N)
 chartSeries(MYAGM2CNM189N,name="China M2 in CNY")
 ```
 
-![](finance_files/figure-html/unnamed-chunk-3-1.png)
+![plot of chunk unnamed-chunk-3](figure/unnamed-chunk-3-1.png)
 
 ## ggplot2 plot
 
@@ -54,7 +61,7 @@ colnames(cnm2)=c('month','M2')
 ggplot(data=cnm2,aes(x=as.Date(month),y=M2,color=M2))+geom_line()
 ```
 
-![](finance_files/figure-html/unnamed-chunk-4-1.png)
+![plot of chunk unnamed-chunk-4](figure/unnamed-chunk-4-1.png)
 
 # m0,m1,m2
 
@@ -66,6 +73,6 @@ money3=melt(data=money,id.vars = 'Date',variable.name = 'm012',value.name = 'yiy
 ggplot(data=money3,aes(x=as.Date(Date),y=yiyuan,color=m012))+geom_line()+geom_point()
 ```
 
-![](finance_files/figure-html/unnamed-chunk-5-1.png)
+![plot of chunk unnamed-chunk-5](figure/unnamed-chunk-5-1.png)
 
 
