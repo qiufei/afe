@@ -1,16 +1,6 @@
----
-title: "corporation price"
-author: "qiufei"
-date: "2016-01-31"
-output: 
-  html_document: 
-    fig_height: 7
-    fig_width: 9
-    keep_md: yes
-    number_sections: yes
-    theme: readable
-    toc: yes
----
+# corporation price
+qiufei  
+2016-01-31  
 
 <!-- # load needed packages -->
 
@@ -19,7 +9,7 @@ output:
 
 # pic quandmod
 
-![plot of chunk pic quandmod](figure/pic quandmod-1.png)![plot of chunk pic quandmod](figure/pic quandmod-2.png)![plot of chunk pic quandmod](figure/pic quandmod-3.png)![plot of chunk pic quandmod](figure/pic quandmod-4.png)![plot of chunk pic quandmod](figure/pic quandmod-5.png)![plot of chunk pic quandmod](figure/pic quandmod-6.png)
+![](corporation_files/figure-html/pic quandmod-1.png)<!-- -->![](corporation_files/figure-html/pic quandmod-2.png)<!-- -->![](corporation_files/figure-html/pic quandmod-3.png)<!-- -->![](corporation_files/figure-html/pic quandmod-4.png)<!-- -->![](corporation_files/figure-html/pic quandmod-5.png)<!-- -->![](corporation_files/figure-html/pic quandmod-6.png)<!-- -->
 
 ```
 ##              [,1]   [,2]
@@ -37,7 +27,7 @@ output:
 
 # haolike
 
-![plot of chunk unnamed-chunk-1](figure/unnamed-chunk-1-1.png)![plot of chunk unnamed-chunk-1](figure/unnamed-chunk-1-2.png)![plot of chunk unnamed-chunk-1](figure/unnamed-chunk-1-3.png)![plot of chunk unnamed-chunk-1](figure/unnamed-chunk-1-4.png)
+![](corporation_files/figure-html/unnamed-chunk-1-1.png)<!-- -->![](corporation_files/figure-html/unnamed-chunk-1-2.png)<!-- -->![](corporation_files/figure-html/unnamed-chunk-1-3.png)<!-- -->![](corporation_files/figure-html/unnamed-chunk-1-4.png)<!-- -->
 
 ```
 ##             [,1]  [,2]
@@ -68,7 +58,7 @@ output:
 ##  Max.   :2016-08-12   Max.   :33.62
 ```
 
-![plot of chunk pic quandl](figure/pic quandl-1.png)![plot of chunk pic quandl](figure/pic quandl-2.png)![plot of chunk pic quandl](figure/pic quandl-3.png)![plot of chunk pic quandl](figure/pic quandl-4.png)![plot of chunk pic quandl](figure/pic quandl-5.png)![plot of chunk pic quandl](figure/pic quandl-6.png)
+![](corporation_files/figure-html/pic quandl-1.png)<!-- -->![](corporation_files/figure-html/pic quandl-2.png)<!-- -->![](corporation_files/figure-html/pic quandl-3.png)<!-- -->![](corporation_files/figure-html/pic quandl-4.png)<!-- -->![](corporation_files/figure-html/pic quandl-5.png)<!-- -->![](corporation_files/figure-html/pic quandl-6.png)<!-- -->
 
 ```
 ##             [,1]  [,2]

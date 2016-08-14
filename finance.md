@@ -1,13 +1,6 @@
----
-title: "finance"
-author: "qiufei"
-date: "August 21, 2015"
-output: 
-  html_document: 
-    fig_height: 7
-    fig_width: 14
-    keep_md: yes
----
+# finance
+qiufei  
+August 21, 2015  
 
 fiance about china
 
@@ -36,17 +29,17 @@ Monthly, Not Seasonally Adjusted
 ## [1] "MYAGM2CNM189N"
 ```
 
-<img src="figure/unnamed-chunk-2-1.png" title="plot of chunk unnamed-chunk-2" alt="plot of chunk unnamed-chunk-2" style="display: block; margin: auto;" />
+<img src="finance_files/figure-html/unnamed-chunk-2-1.png" style="display: block; margin: auto;" />
 
 ## quandmod plot with name specified by yourself
-<img src="figure/unnamed-chunk-3-1.png" title="plot of chunk unnamed-chunk-3" alt="plot of chunk unnamed-chunk-3" style="display: block; margin: auto;" />
+<img src="finance_files/figure-html/unnamed-chunk-3-1.png" style="display: block; margin: auto;" />
 
 ## ggplot2 plot
 
-<img src="figure/unnamed-chunk-4-1.png" title="plot of chunk unnamed-chunk-4" alt="plot of chunk unnamed-chunk-4" style="display: block; margin: auto;" />
+<img src="finance_files/figure-html/unnamed-chunk-4-1.png" style="display: block; margin: auto;" />
 
 # m0,m1,m2
 
-<img src="figure/unnamed-chunk-5-1.png" title="plot of chunk unnamed-chunk-5" alt="plot of chunk unnamed-chunk-5" style="display: block; margin: auto;" />
+<img src="finance_files/figure-html/unnamed-chunk-5-1.png" style="display: block; margin: auto;" />
 
 

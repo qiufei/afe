@@ -1,13 +1,6 @@
----
-title: "price"
-author: "qiufei"
-date: "August 21, 2015"
-output: 
-  html_document: 
-    fig_height: 7
-    fig_width: 14
-    keep_md: yes
----
+# price
+qiufei  
+August 21, 2015  
 
 I want to see the difference between ppi and cpi of china.
 
@@ -30,18 +23,18 @@ the ppi and cpi data are preceding month=100.
 
 # plot ppi
 
-<img src="figure/unnamed-chunk-3-1.png" title="plot of chunk unnamed-chunk-3" alt="plot of chunk unnamed-chunk-3" style="display: block; margin: auto;" />
+<img src="price_files/figure-html/unnamed-chunk-3-1.png" style="display: block; margin: auto;" />
 
 # get cpi data
 
 
 # plot cpi
-<img src="figure/unnamed-chunk-5-1.png" title="plot of chunk unnamed-chunk-5" alt="plot of chunk unnamed-chunk-5" style="display: block; margin: auto;" />
+<img src="price_files/figure-html/unnamed-chunk-5-1.png" style="display: block; margin: auto;" />
 
 # merge cpi and ppi
 
 
 #plot cpi and ppi in one figure
 
-<img src="figure/unnamed-chunk-7-1.png" title="plot of chunk unnamed-chunk-7" alt="plot of chunk unnamed-chunk-7" style="display: block; margin: auto;" />
+<img src="price_files/figure-html/unnamed-chunk-7-1.png" style="display: block; margin: auto;" />
 
