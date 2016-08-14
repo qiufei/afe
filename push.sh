@@ -3,6 +3,7 @@
 # get into the operation folder
 cd /home/peter/Nutstore/AFE
 
+rm *.html
 # save reports and changes
 git add --all && git commit -a -m 'better' && git push
 
