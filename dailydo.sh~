@@ -1,0 +1,40 @@
+#!/bin/sh
+# get into operation folder
+cd do
+
+# get source file updates
+git pull
+
+# romve old chosen code
+rm chosencode.rda
+
+# get newest data and generate new chosen code 
+Rscript  getdata.R && echo "hello data!"
+
+
+# run description
+Rscript -e 'library("knitr"); knit2html("D001_stockmarket.Rmd",force_v1 = TRUE)'
+
+# description part is finished
+echo "description part is finished!"
+
+# run stategy
+Rscript -e 'library("knitr"); knit2html("S001_most.volatile.Rmd",force_v1 = TRUE)'
+
+# strategy part is finished
+echo "strategy part is finished!"
+
+# run report
+Rscript -e 'library("knitr"); knit2html("chosencode.Rmd",force_v1 = TRUE)'
+
+# report part is finished
+echo "report part is finished!"
+
+# remove all html file
+rm *.html
+
+# save report
+git add --all && git commit -a -m 'better' && git push
+
+# finally
+echo "well done!"  
