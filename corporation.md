@@ -1,6 +1,16 @@
-# corporation price
-qiufei  
-2016-01-31  
+---
+title: "corporation price"
+author: "qiufei"
+date: "2016-01-31"
+output: 
+  html_document: 
+    fig_height: 7
+    fig_width: 9
+    keep_md: yes
+    number_sections: yes
+    theme: readable
+    toc: yes
+---
 
 <!-- # load needed packages -->
 
@@ -9,38 +19,38 @@ qiufei
 
 # pic quandmod
 
-![](corporation_files/figure-html/pic quandmod-1.png)![](corporation_files/figure-html/pic quandmod-2.png)![](corporation_files/figure-html/pic quandmod-3.png)![](corporation_files/figure-html/pic quandmod-4.png)![](corporation_files/figure-html/pic quandmod-5.png)![](corporation_files/figure-html/pic quandmod-6.png)
+![plot of chunk pic quandmod](figure/pic quandmod-1.png)![plot of chunk pic quandmod](figure/pic quandmod-2.png)![plot of chunk pic quandmod](figure/pic quandmod-3.png)![plot of chunk pic quandmod](figure/pic quandmod-4.png)![plot of chunk pic quandmod](figure/pic quandmod-5.png)![plot of chunk pic quandmod](figure/pic quandmod-6.png)
 
 ```
 ##              [,1]   [,2]
-## 2016-03-18 12.205 12.205
-## 2016-03-25 12.205 12.205
-## 2016-04-01 12.205 12.205
-## 2016-04-08 12.205 12.205
-## 2016-04-15 12.205 12.205
-## 2016-04-22 12.205 12.205
-## 2016-04-29 12.205 12.205
-## 2016-05-06 12.205 12.205
-## 2016-05-13 12.205 12.205
-## 2016-05-19 12.205 12.205
+## 2016-06-10 12.205 12.205
+## 2016-06-17 12.205 12.205
+## 2016-06-24 12.205 12.205
+## 2016-07-01 12.205 12.205
+## 2016-07-08 12.205 12.205
+## 2016-07-15 12.205 12.205
+## 2016-07-22 12.205 12.205
+## 2016-07-29 12.205 12.205
+## 2016-08-05 12.205 12.205
+## 2016-08-12 12.205 12.205
 ```
 
 # haolike
 
-![](corporation_files/figure-html/unnamed-chunk-1-1.png)![](corporation_files/figure-html/unnamed-chunk-1-2.png)![](corporation_files/figure-html/unnamed-chunk-1-3.png)![](corporation_files/figure-html/unnamed-chunk-1-4.png)
+![plot of chunk unnamed-chunk-1](figure/unnamed-chunk-1-1.png)![plot of chunk unnamed-chunk-1](figure/unnamed-chunk-1-2.png)![plot of chunk unnamed-chunk-1](figure/unnamed-chunk-1-3.png)![plot of chunk unnamed-chunk-1](figure/unnamed-chunk-1-4.png)
 
 ```
 ##             [,1]  [,2]
-## 2016-03-18 27.05 28.53
-## 2016-03-25 28.83 30.99
-## 2016-04-01 30.99 30.99
-## 2016-04-08 30.99 30.99
-## 2016-04-15 30.99 30.99
-## 2016-04-22 30.89 33.45
-## 2016-04-29 32.02 33.77
-## 2016-05-06 32.64 34.85
-## 2016-05-13 31.88 33.97
-## 2016-05-19 32.46 34.98
+## 2016-06-10 30.11 31.67
+## 2016-06-17 27.70 30.25
+## 2016-06-24 30.45 30.64
+## 2016-07-01 30.81 31.15
+## 2016-07-08 31.26 32.69
+## 2016-07-15 32.84 33.78
+## 2016-07-22 34.40 35.61
+## 2016-07-29 33.89 35.47
+## 2016-08-05 35.77 36.15
+## 2016-08-12 35.34 36.13
 ```
 
 
@@ -51,27 +61,27 @@ qiufei
 ```
 ##      Index                Close      
 ##  Min.   :2012-11-26   Min.   : 5.82  
-##  1st Qu.:2013-10-17   1st Qu.: 8.65  
-##  Median :2014-08-21   Median :10.82  
-##  Mean   :2014-08-25   Mean   :11.94  
-##  3rd Qu.:2015-07-09   3rd Qu.:12.93  
-##  Max.   :2016-05-19   Max.   :33.62
+##  1st Qu.:2013-11-07   1st Qu.: 8.76  
+##  Median :2014-10-10   Median :11.17  
+##  Mean   :2014-10-09   Mean   :11.96  
+##  3rd Qu.:2015-09-12   3rd Qu.:12.77  
+##  Max.   :2016-08-12   Max.   :33.62
 ```
 
-![](corporation_files/figure-html/pic quandl-1.png)![](corporation_files/figure-html/pic quandl-2.png)![](corporation_files/figure-html/pic quandl-3.png)![](corporation_files/figure-html/pic quandl-4.png)![](corporation_files/figure-html/pic quandl-5.png)![](corporation_files/figure-html/pic quandl-6.png)
+![plot of chunk pic quandl](figure/pic quandl-1.png)![plot of chunk pic quandl](figure/pic quandl-2.png)![plot of chunk pic quandl](figure/pic quandl-3.png)![plot of chunk pic quandl](figure/pic quandl-4.png)![plot of chunk pic quandl](figure/pic quandl-5.png)![plot of chunk pic quandl](figure/pic quandl-6.png)
 
 ```
 ##             [,1]  [,2]
-## 2016-03-18 12.89 14.10
-## 2016-03-25 13.55 14.09
-## 2016-04-01 13.16 13.56
-## 2016-04-08 13.45 13.90
-## 2016-04-15 13.60 13.97
-## 2016-04-22 12.35 13.17
-## 2016-04-29 12.34 12.84
-## 2016-05-06 12.14 12.66
-## 2016-05-13 11.84 12.20
-## 2016-05-19 11.93 12.33
+## 2016-06-08 12.01 12.11
+## 2016-06-17 11.37 11.62
+## 2016-06-24 11.38 11.68
+## 2016-07-01 11.62 12.12
+## 2016-07-08 12.28 12.45
+## 2016-07-15 12.27 12.47
+## 2016-07-22 12.15 12.42
+## 2016-07-29 11.93 12.40
+## 2016-08-05 11.71 12.35
+## 2016-08-12 12.43 13.28
 ```
 
 

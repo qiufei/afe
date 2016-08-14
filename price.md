@@ -1,6 +1,13 @@
-# price
-qiufei  
-August 21, 2015  
+---
+title: "price"
+author: "qiufei"
+date: "August 21, 2015"
+output: 
+  html_document: 
+    fig_height: 7
+    fig_width: 9
+    keep_md: yes
+---
 
 I want to see the difference between ppi and cpi of china.
 
@@ -30,7 +37,7 @@ ppi=Quandl("NBSC/A01080701_M")
 ggplot(data=ppi,aes(x=as.Date(Date),y=Value,color=Value))+geom_line()+geom_point()
 ```
 
-![](price_files/figure-html/unnamed-chunk-3-1.png)
+![plot of chunk unnamed-chunk-3](figure/unnamed-chunk-3-1.png)
 
 # get cpi data
 
@@ -44,7 +51,7 @@ cpi=Quandl("NBSC/A01030101_M")
 ggplot(data=cpi,aes(x=as.Date(Date),y=Value,color=Value))+geom_line()+geom_point()
 ```
 
-![](price_files/figure-html/unnamed-chunk-5-1.png)
+![plot of chunk unnamed-chunk-5](figure/unnamed-chunk-5-1.png)
 
 # merge cpi and ppi
 
@@ -65,5 +72,5 @@ price=melt(price_wide,id.vars = 'date',variable.name = 'index',value.name = 'pi'
 ggplot(data=price,aes(x=as.Date(date),y=pi,color=index))+geom_line()+geom_point()
 ```
 
-![](price_files/figure-html/unnamed-chunk-7-1.png)
+![plot of chunk unnamed-chunk-7](figure/unnamed-chunk-7-1.png)
 
