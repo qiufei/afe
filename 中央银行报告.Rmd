@@ -16,7 +16,7 @@ output:
 
 # load needed packages
 library(knitr)
-opts_chunk$set(Message=FALSE,echo=FALSE)
+opts_chunk$set(Message=FALSE,echo=FALSE,fig.align = 'center')
 library(ggplot2)
 library(reshape2)
 library(Quandl)

@@ -5,7 +5,7 @@ date: "2016-01-31"
 output: 
   html_document: 
     fig_height: 7
-    fig_width: 9
+    fig_width: 14
     keep_md: yes
     number_sections: yes
     theme: readable
@@ -18,7 +18,7 @@ output:
 
 # load needed packages
 library(knitr)
-opts_chunk$set(Message=FALSE,echo=FALSE)
+opts_chunk$set(Message=FALSE,echo=FALSE,fig.align = 'center')
 library(ggplot2)
 library(reshape2)
 library(Quandl)

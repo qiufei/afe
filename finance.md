@@ -5,7 +5,7 @@ date: "August 21, 2015"
 output: 
   html_document: 
     fig_height: 7
-    fig_width: 9
+    fig_width: 14
     keep_md: yes
 ---
 
@@ -16,6 +16,8 @@ fiance about china
 
 
 ```r
+library(knitr)
+opts_chunk$set(Message=FALSE,echo=FALSE,fig.align = 'center')
 library(quantmod)
 library(ggplot2)
 library(reshape2)
@@ -30,49 +32,21 @@ Monthly, Not Seasonally Adjusted
 ## quandmod plot
 
 
-```r
-getSymbols('MYAGM2CNM189N',src='FRED')
-```
-
 ```
 ## [1] "MYAGM2CNM189N"
 ```
 
-```r
-chartSeries(MYAGM2CNM189N)
-```
-
-![plot of chunk unnamed-chunk-2](figure/unnamed-chunk-2-1.png)
+<img src="figure/unnamed-chunk-2-1.png" title="plot of chunk unnamed-chunk-2" alt="plot of chunk unnamed-chunk-2" style="display: block; margin: auto;" />
 
 ## quandmod plot with name specified by yourself
-
-```r
-chartSeries(MYAGM2CNM189N,name="China M2 in CNY")
-```
-
-![plot of chunk unnamed-chunk-3](figure/unnamed-chunk-3-1.png)
+<img src="figure/unnamed-chunk-3-1.png" title="plot of chunk unnamed-chunk-3" alt="plot of chunk unnamed-chunk-3" style="display: block; margin: auto;" />
 
 ## ggplot2 plot
 
-
-```r
-cnm2=data.frame(month=time(MYAGM2CNM189N),M2=coredata(MYAGM2CNM189N))
-colnames(cnm2)=c('month','M2')
-ggplot(data=cnm2,aes(x=as.Date(month),y=M2,color=M2))+geom_line()
-```
-
-![plot of chunk unnamed-chunk-4](figure/unnamed-chunk-4-1.png)
+<img src="figure/unnamed-chunk-4-1.png" title="plot of chunk unnamed-chunk-4" alt="plot of chunk unnamed-chunk-4" style="display: block; margin: auto;" />
 
 # m0,m1,m2
 
-
-```r
-money=Quandl("PBCHINA/REP_07", authcode="9iGeZZoG6Vc46rfs1AgJ")
-money3=melt(data=money,id.vars = 'Date',variable.name = 'm012',value.name = 'yiyuan')
-
-ggplot(data=money3,aes(x=as.Date(Date),y=yiyuan,color=m012))+geom_line()+geom_point()
-```
-
-![plot of chunk unnamed-chunk-5](figure/unnamed-chunk-5-1.png)
+<img src="figure/unnamed-chunk-5-1.png" title="plot of chunk unnamed-chunk-5" alt="plot of chunk unnamed-chunk-5" style="display: block; margin: auto;" />
 
 

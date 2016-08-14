@@ -5,7 +5,7 @@ date: "August 21, 2015"
 output: 
   html_document: 
     fig_height: 7
-    fig_width: 9
+    fig_width: 14
     keep_md: yes
 ---
 
@@ -17,6 +17,7 @@ I want to see the difference between ppi and cpi of china.
 
 ```r
 library(knitr)
+opts_chunk$set(Message=FALSE,echo=FALSE,fig.align = 'center')
 library(ggplot2)
 library(reshape2)
 library(Quandl)
@@ -27,50 +28,20 @@ the ppi and cpi data are preceding month=100.
 # get ppi data
 
 
-```r
-ppi=Quandl("NBSC/A01080701_M")
-```
 # plot ppi
 
-
-```r
-ggplot(data=ppi,aes(x=as.Date(Date),y=Value,color=Value))+geom_line()+geom_point()
-```
-
-![plot of chunk unnamed-chunk-3](figure/unnamed-chunk-3-1.png)
+<img src="figure/unnamed-chunk-3-1.png" title="plot of chunk unnamed-chunk-3" alt="plot of chunk unnamed-chunk-3" style="display: block; margin: auto;" />
 
 # get cpi data
 
-```r
-cpi=Quandl("NBSC/A01030101_M")
-```
 
 # plot cpi
-
-```r
-ggplot(data=cpi,aes(x=as.Date(Date),y=Value,color=Value))+geom_line()+geom_point()
-```
-
-![plot of chunk unnamed-chunk-5](figure/unnamed-chunk-5-1.png)
+<img src="figure/unnamed-chunk-5-1.png" title="plot of chunk unnamed-chunk-5" alt="plot of chunk unnamed-chunk-5" style="display: block; margin: auto;" />
 
 # merge cpi and ppi
 
-```r
-price_wide=merge(cpi,ppi,by='Date')
-## merge through the by option will only merge dataframe with the same variable name of the varible after by=.
-## since ppi time is shorter than cpi but has same time interval, this is to get cpi and ppi in same time period.
-
-colnames(price_wide)=c('date','cpi','ppi')
-
-price=melt(price_wide,id.vars = 'date',variable.name = 'index',value.name = 'pi')
-```
 
 #plot cpi and ppi in one figure
 
-
-```r
-ggplot(data=price,aes(x=as.Date(date),y=pi,color=index))+geom_line()+geom_point()
-```
-
-![plot of chunk unnamed-chunk-7](figure/unnamed-chunk-7-1.png)
+<img src="figure/unnamed-chunk-7-1.png" title="plot of chunk unnamed-chunk-7" alt="plot of chunk unnamed-chunk-7" style="display: block; margin: auto;" />
 
