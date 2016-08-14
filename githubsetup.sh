@@ -1,3 +1,0 @@
-#!/bin/sh
-
-git clone https://qiufei:2life2here@github.com/qiufei/AFE.git
