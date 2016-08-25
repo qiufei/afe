@@ -22,7 +22,7 @@ qiufei
 ## 2016-08-05 12.205 12.205
 ## 2016-08-12 12.205 12.205
 ## 2016-08-19 12.205 12.205
-## 2016-08-24 12.205 12.205
+## 2016-08-25 12.205 12.205
 ```
 
 # haolike
@@ -40,7 +40,7 @@ qiufei
 ## 2016-08-05 35.77 36.15
 ## 2016-08-12 35.34 36.13
 ## 2016-08-19 36.08 36.56
-## 2016-08-24 36.81 38.16
+## 2016-08-25 36.81 38.33
 ```
 
 
@@ -52,10 +52,10 @@ qiufei
 ##      Index                Close      
 ##  Min.   :2012-11-26   Min.   : 5.82  
 ##  1st Qu.:2013-11-11   1st Qu.: 8.77  
-##  Median :2014-10-15   Median :11.20  
-##  Mean   :2014-10-14   Mean   :11.97  
-##  3rd Qu.:2015-09-20   3rd Qu.:12.85  
-##  Max.   :2016-08-23   Max.   :33.62
+##  Median :2014-10-16   Median :11.20  
+##  Mean   :2014-10-15   Mean   :11.97  
+##  3rd Qu.:2015-09-21   3rd Qu.:12.86  
+##  Max.   :2016-08-24   Max.   :33.62
 ```
 
 ![](corporation_files/figure-html/pic quandl-1.png)<!-- -->![](corporation_files/figure-html/pic quandl-2.png)<!-- -->![](corporation_files/figure-html/pic quandl-3.png)<!-- -->![](corporation_files/figure-html/pic quandl-4.png)<!-- -->![](corporation_files/figure-html/pic quandl-5.png)<!-- -->![](corporation_files/figure-html/pic quandl-6.png)<!-- -->
@@ -71,7 +71,7 @@ qiufei
 ## 2016-08-05 11.71 12.35
 ## 2016-08-12 12.43 13.28
 ## 2016-08-19 13.28 13.40
-## 2016-08-23 13.08 13.15
+## 2016-08-24 13.06 13.15
 ```
 
 
