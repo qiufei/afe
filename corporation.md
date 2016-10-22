@@ -49,13 +49,13 @@ qiufei
 
 
 ```
-##      Index                Close      
-##  Min.   :2012-11-26   Min.   : 5.82  
-##  1st Qu.:2013-11-22   1st Qu.: 8.80  
-##  Median :2014-11-10   Median :11.31  
-##  Mean   :2014-11-09   Mean   :12.03  
-##  3rd Qu.:2015-11-03   3rd Qu.:13.06  
-##  Max.   :2016-10-20   Max.   :33.62
+##      Index                Close       
+##  Min.   :2012-11-26   Min.   : 5.820  
+##  1st Qu.:2013-11-22   1st Qu.: 8.803  
+##  Median :2014-11-10   Median :11.310  
+##  Mean   :2014-11-10   Mean   :12.029  
+##  3rd Qu.:2015-11-03   3rd Qu.:13.060  
+##  Max.   :2016-10-21   Max.   :33.620
 ```
 
 ![](corporation_files/figure-html/pic quandl-1.png)<!-- -->![](corporation_files/figure-html/pic quandl-2.png)<!-- -->![](corporation_files/figure-html/pic quandl-3.png)<!-- -->![](corporation_files/figure-html/pic quandl-4.png)<!-- -->![](corporation_files/figure-html/pic quandl-5.png)<!-- -->![](corporation_files/figure-html/pic quandl-6.png)<!-- -->
@@ -71,7 +71,7 @@ qiufei
 ## 2016-09-23 13.27 13.47
 ## 2016-09-30 13.06 13.80
 ## 2016-10-14 13.96 14.16
-## 2016-10-20 13.99 14.55
+## 2016-10-21 13.99 14.58
 ```
 
 
