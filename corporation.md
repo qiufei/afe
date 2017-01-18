@@ -22,7 +22,7 @@ qiufei
 ## 2016-12-30 12.205 12.205
 ## 2017-01-06 12.205 12.205
 ## 2017-01-13 12.205 12.205
-## 2017-01-17 12.205 12.205
+## 2017-01-18 12.205 12.205
 ```
 
 # haolike
@@ -40,7 +40,7 @@ qiufei
 ## 2016-12-30 31.44 32.80
 ## 2017-01-06 32.05 32.79
 ## 2017-01-13 29.99 31.74
-## 2017-01-17 29.63 29.76
+## 2017-01-18 29.39 29.76
 ```
 
 
@@ -51,11 +51,11 @@ qiufei
 ```
 ##      Index                Close       
 ##  Min.   :2012-11-26   Min.   : 5.820  
-##  1st Qu.:2013-12-13   1st Qu.: 8.893  
-##  Median :2014-12-22   Median :11.470  
-##  Mean   :2014-12-25   Mean   :12.214  
-##  3rd Qu.:2016-01-06   3rd Qu.:13.557  
-##  Max.   :2017-01-16   Max.   :33.620
+##  1st Qu.:2013-12-14   1st Qu.: 8.895  
+##  Median :2014-12-23   Median :11.470  
+##  Mean   :2014-12-26   Mean   :12.217  
+##  3rd Qu.:2016-01-07   3rd Qu.:13.560  
+##  Max.   :2017-01-17   Max.   :33.620
 ```
 
 ![](corporation_files/figure-html/pic quandl-1.png)<!-- -->![](corporation_files/figure-html/pic quandl-2.png)<!-- -->![](corporation_files/figure-html/pic quandl-3.png)<!-- -->![](corporation_files/figure-html/pic quandl-4.png)<!-- -->![](corporation_files/figure-html/pic quandl-5.png)<!-- -->![](corporation_files/figure-html/pic quandl-6.png)<!-- -->
@@ -71,7 +71,7 @@ qiufei
 ## 2016-12-30 15.30 15.65
 ## 2017-01-06 15.50 15.90
 ## 2017-01-13 15.41 16.37
-## 2017-01-16 14.55 14.55
+## 2017-01-17 14.55 14.79
 ```
 
 
